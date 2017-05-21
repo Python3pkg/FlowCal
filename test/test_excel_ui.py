@@ -35,25 +35,25 @@ class TestReadTable(unittest.TestCase):
         # Expected output
         expected_output_list = []
         row = {}
-        row[u'Description'] = u'Moake\'s Flow Cytometer'
-        row[u'Forward Scatter Channel'] = u'FSC-H'
-        row[u'Side Scatter Channel'] = u'SSC-H'
-        row[u'Fluorescence Channels'] = u'FL1-H, FL2-H, FL3-H'
-        row[u'Time Channel'] = u'Time'
+        row['Description'] = 'Moake\'s Flow Cytometer'
+        row['Forward Scatter Channel'] = 'FSC-H'
+        row['Side Scatter Channel'] = 'SSC-H'
+        row['Fluorescence Channels'] = 'FL1-H, FL2-H, FL3-H'
+        row['Time Channel'] = 'Time'
         expected_output_list.append(row)
         row = {}
-        row[u'Description'] = u'Moake\'s Flow Cytometer (new acquisition card)'
-        row[u'Forward Scatter Channel'] = u'FSC'
-        row[u'Side Scatter Channel'] = u'SSC'
-        row[u'Fluorescence Channels'] = u'FL1, FL2, FL3'
-        row[u'Time Channel'] = u'TIME'
+        row['Description'] = 'Moake\'s Flow Cytometer (new acquisition card)'
+        row['Forward Scatter Channel'] = 'FSC'
+        row['Side Scatter Channel'] = 'SSC'
+        row['Fluorescence Channels'] = 'FL1, FL2, FL3'
+        row['Time Channel'] = 'TIME'
         expected_output_list.append(row)
-        expected_index = pd.Series([u'FC001', u'FC002'], name='ID')
-        expected_columns = [u'Description',
-                            u'Forward Scatter Channel',
-                            u'Side Scatter Channel',
-                            u'Fluorescence Channels',
-                            u'Time Channel']
+        expected_index = pd.Series(['FC001', 'FC002'], name='ID')
+        expected_columns = ['Description',
+                            'Forward Scatter Channel',
+                            'Side Scatter Channel',
+                            'Fluorescence Channels',
+                            'Time Channel']
 
         expected_output = pd.DataFrame(expected_output_list,
                                        index=expected_index,
@@ -78,27 +78,27 @@ class TestReadTable(unittest.TestCase):
         # Expected output
         expected_output_list = []
         row = {}
-        row[u'ID'] = u'FC001'
-        row[u'Description'] = u'Moake\'s Flow Cytometer'
-        row[u'Forward Scatter Channel'] = u'FSC-H'
-        row[u'Side Scatter Channel'] = u'SSC-H'
-        row[u'Fluorescence Channels'] = u'FL1-H, FL2-H, FL3-H'
-        row[u'Time Channel'] = u'Time'
+        row['ID'] = 'FC001'
+        row['Description'] = 'Moake\'s Flow Cytometer'
+        row['Forward Scatter Channel'] = 'FSC-H'
+        row['Side Scatter Channel'] = 'SSC-H'
+        row['Fluorescence Channels'] = 'FL1-H, FL2-H, FL3-H'
+        row['Time Channel'] = 'Time'
         expected_output_list.append(row)
         row = {}
-        row[u'ID'] = u'FC002'
-        row[u'Description'] = u'Moake\'s Flow Cytometer (new acquisition card)'
-        row[u'Forward Scatter Channel'] = u'FSC'
-        row[u'Side Scatter Channel'] = u'SSC'
-        row[u'Fluorescence Channels'] = u'FL1, FL2, FL3'
-        row[u'Time Channel'] = u'TIME'
+        row['ID'] = 'FC002'
+        row['Description'] = 'Moake\'s Flow Cytometer (new acquisition card)'
+        row['Forward Scatter Channel'] = 'FSC'
+        row['Side Scatter Channel'] = 'SSC'
+        row['Fluorescence Channels'] = 'FL1, FL2, FL3'
+        row['Time Channel'] = 'TIME'
         expected_output_list.append(row)
-        expected_columns = [u'ID',
-                            u'Description',
-                            u'Forward Scatter Channel',
-                            u'Side Scatter Channel',
-                            u'Fluorescence Channels',
-                            u'Time Channel']
+        expected_columns = ['ID',
+                            'Description',
+                            'Forward Scatter Channel',
+                            'Side Scatter Channel',
+                            'Fluorescence Channels',
+                            'Time Channel']
 
         expected_output = pd.DataFrame(expected_output_list,
                                        columns=expected_columns)
@@ -123,32 +123,32 @@ class TestReadTable(unittest.TestCase):
         # Expected output
         expected_output_list = []
         row = {}
-        row[u'Description'] = u'Moake\'s Flow Cytometer'
-        row[u'Forward Scatter Channel'] = u'FSC-H'
-        row[u'Side Scatter Channel'] = u'SSC-H'
-        row[u'Fluorescence Channels'] = u'FL1-H, FL2-H, FL3-H'
-        row[u'Time Channel'] = u'Time'
+        row['Description'] = 'Moake\'s Flow Cytometer'
+        row['Forward Scatter Channel'] = 'FSC-H'
+        row['Side Scatter Channel'] = 'SSC-H'
+        row['Fluorescence Channels'] = 'FL1-H, FL2-H, FL3-H'
+        row['Time Channel'] = 'Time'
         expected_output_list.append(row)
         row = {}
-        row[u'Description'] = u'Moake\'s Flow Cytometer (new acquisition card)'
-        row[u'Forward Scatter Channel'] = u'FSC'
-        row[u'Side Scatter Channel'] = u'SSC'
-        row[u'Fluorescence Channels'] = u'FL1, FL2, FL3'
-        row[u'Time Channel'] = u'TIME'
+        row['Description'] = 'Moake\'s Flow Cytometer (new acquisition card)'
+        row['Forward Scatter Channel'] = 'FSC'
+        row['Side Scatter Channel'] = 'SSC'
+        row['Fluorescence Channels'] = 'FL1, FL2, FL3'
+        row['Time Channel'] = 'TIME'
         expected_output_list.append(row)
         row = {}
-        row[u'Description'] = u'Some other flow cytometer'
-        row[u'Forward Scatter Channel'] = u'FSC-A'
-        row[u'Side Scatter Channel'] = u'SSC-A'
-        row[u'Fluorescence Channels'] = u'FL1-A, FL2-A, FL3-A'
-        row[u'Time Channel'] = u'Time'
+        row['Description'] = 'Some other flow cytometer'
+        row['Forward Scatter Channel'] = 'FSC-A'
+        row['Side Scatter Channel'] = 'SSC-A'
+        row['Fluorescence Channels'] = 'FL1-A, FL2-A, FL3-A'
+        row['Time Channel'] = 'Time'
         expected_output_list.append(row)
-        expected_index = pd.Series([u'FC001', u'FC002', u'FC003'], name='ID')
-        expected_columns = [u'Description',
-                            u'Forward Scatter Channel',
-                            u'Side Scatter Channel',
-                            u'Fluorescence Channels',
-                            u'Time Channel']
+        expected_index = pd.Series(['FC001', 'FC002', 'FC003'], name='ID')
+        expected_columns = ['Description',
+                            'Forward Scatter Channel',
+                            'Side Scatter Channel',
+                            'Fluorescence Channels',
+                            'Time Channel']
 
         expected_output = pd.DataFrame(expected_output_list,
                                        index=expected_index,

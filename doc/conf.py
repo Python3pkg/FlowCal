@@ -53,10 +53,10 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'FlowCal'
-copyright = u'2015, S. Castillo-Hair, J. Sexton, B. Landry, E. Olson, ' +\
+project = 'FlowCal'
+copyright = '2015, S. Castillo-Hair, J. Sexton, B. Landry, E. Olson, ' +\
   'O. Igoshin, J. Tabor'
-author = u'S. Castillo-Hair, J. Sexton, B. Landry, E. Olson, J. Tabor'
+author = 'S. Castillo-Hair, J. Sexton, B. Landry, E. Olson, J. Tabor'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -230,8 +230,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'FlowCal.tex', u'FlowCal Documentation',
-   u'S. Castillo-Hair, J. Sexton, B. Landry, E. Olson, J. Tabor', 'manual'),
+  (master_doc, 'FlowCal.tex', 'FlowCal Documentation',
+   'S. Castillo-Hair, J. Sexton, B. Landry, E. Olson, J. Tabor', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -260,7 +260,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'flowcal', u'FlowCal Documentation',
+    (master_doc, 'flowcal', 'FlowCal Documentation',
      [author], 1)
 ]
 
@@ -274,7 +274,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'FlowCal', u'FlowCal Documentation',
+  (master_doc, 'FlowCal', 'FlowCal Documentation',
    author, 'FlowCal', 'One line description of project.',
    'Miscellaneous'),
 ]

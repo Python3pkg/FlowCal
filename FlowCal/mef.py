@@ -19,7 +19,7 @@ import FlowCal.stats
 # Use default colors from palettable if available
 try:
     import palettable
-except ImportError, e:
+except ImportError as e:
     standard_curve_colors = ['b', 'g', 'r']
 else:
     standard_curve_colors = \
@@ -168,7 +168,7 @@ def clustering_gmm(data,
     # This avoids the complete elimination of a cluster if two or more clusters
     # have very similar means.
     resp = gmm.predict_proba(data)
-    labels = [np.random.choice(range(n_clusters), p=ri) for ri in resp]
+    labels = [np.random.choice(list(range(n_clusters)), p=ri) for ri in resp]
 
     return labels
 
@@ -768,9 +768,9 @@ def get_transform_fxn(data_beads,
 
         # Print information
         print("Step 1: Clustering")
-        print("  Number of populations to find: {}".format(n_clusters))
+        print(("  Number of populations to find: {}".format(n_clusters)))
         print("  Percentage of events in each population:")
-        print("    " + str(population_perc))
+        print(("    " + str(population_perc)))
 
     # Plot
     if plot:
@@ -847,9 +847,9 @@ def get_transform_fxn(data_beads,
 
         # Print information
         if verbose:
-            print("({}) Step 2: Population Statistic".format(mef_channel))
+            print(("({}) Step 2: Population Statistic".format(mef_channel)))
             print("  Fluorescence of each population (RFI):")
-            print("    " + str(stats_values))
+            print(("    " + str(stats_values)))
 
         ###
         # 3. Select populations to be used for fitting
@@ -878,12 +878,12 @@ def get_transform_fxn(data_beads,
 
         # Print information
         if verbose:
-            print("({}) Step 3: Population Selection".format(mef_channel))
-            print("  {} populations selected.".format(len(selected_rfi)))
+            print(("({}) Step 3: Population Selection".format(mef_channel)))
+            print(("  {} populations selected.".format(len(selected_rfi))))
             print("  Fluorescence of selected populations (RFI):")
-            print("    " + str(selected_rfi))
+            print(("    " + str(selected_rfi)))
             print("  Fluorescence of selected populations (MEF):")
-            print("    " + str(selected_mef))
+            print(("    " + str(selected_mef)))
 
         # Plot
         if plot:
@@ -943,9 +943,9 @@ def get_transform_fxn(data_beads,
 
         # Print information
         if verbose:
-            print("({}) Step 4: Standard Curve Fitting".format(mef_channel))
+            print(("({}) Step 4: Standard Curve Fitting".format(mef_channel)))
             print("  Parameters of bead fluorescence model:")
-            print("    " + str(beads_params))
+            print(("    " + str(beads_params)))
 
         # Plot
         if plot:

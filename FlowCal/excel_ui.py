@@ -76,8 +76,8 @@ import platform
 import re
 import subprocess
 import time
-from Tkinter import Tk
-from tkFileDialog import askopenfilename
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
 import warnings
 
 from matplotlib import pyplot as plt
@@ -189,7 +189,7 @@ def write_workbook(filename, table_list, column_width=None):
         df.to_excel(writer, sheet_name=sheet_name, index=False)
         # Set column width
         if column_width is None:
-            for i, (col_name, column) in enumerate(df.iteritems()):
+            for i, (col_name, column) in enumerate(iter(df.items())):
                 # Get the maximum number of characters in a column
                 max_chars_col = column.astype(str).str.len().max()
                 max_chars_col = max(len(col_name), max_chars_col)
@@ -300,7 +300,7 @@ def process_beads_table(beads_table,
         msg = "Processing Beads table ({} entries)".format(len(beads_table))
         print("")
         print(msg)
-        print("="*len(msg))
+        print(("="*len(msg)))
 
     # Check that plotting directory exist, create otherwise
     if plot and plot_dir is not None \
@@ -335,8 +335,8 @@ def process_beads_table(beads_table,
             # Beads Data
             ###
             if verbose:
-                print("\nBeads ID {}...".format(beads_id))
-                print("Loading file \"{}\"...".format(beads_row['File Path']))
+                print(("\nBeads ID {}...".format(beads_id)))
+                print(("Loading file \"{}\"...".format(beads_row['File Path'])))
 
             # Attempt to open file
             filename = os.path.join(base_dir, beads_row['File Path'])
@@ -476,11 +476,11 @@ def process_beads_table(beads_table,
             if mef_channels:
                 if verbose:
                     if len(mef_channels) == 1:
-                        print("Calculating standard curve for channel {}..." \
-                            .format(mef_channels[0]))
+                        print(("Calculating standard curve for channel {}..." \
+                            .format(mef_channels[0])))
                     else:
-                        print("Calculating standard curve for channels {}..." \
-                            .format(", ".join(mef_channels)))
+                        print(("Calculating standard curve for channels {}..." \
+                            .format(", ".join(mef_channels))))
 
                 mef_output = FlowCal.mef.get_transform_fxn(
                     beads_sample_gated,
@@ -507,7 +507,7 @@ def process_beads_table(beads_table,
         except ExcelUIException as e:
             # Print Exception message
             if verbose:
-                print("ERROR: {}".format(str(e)))
+                print(("ERROR: {}".format(str(e))))
             # Append exception to beads_samples array, and None to everything
             # else
             beads_samples.append(e)
@@ -610,7 +610,7 @@ def process_samples_table(samples_table,
         msg = "Processing Samples table ({} entries)".format(len(samples_table))
         print("")
         print(msg)
-        print("="*len(msg))
+        print(("="*len(msg)))
 
     # Check that plotting directory exist, create otherwise
     if plot and plot_dir is not None \
@@ -645,8 +645,8 @@ def process_samples_table(samples_table,
             # Sample Data
             ###
             if verbose:
-                print("\nSample ID {}...".format(sample_id))
-                print("Loading file \"{}\"...".format(sample_row['File Path']))
+                print(("\nSample ID {}...".format(sample_id)))
+                print(("Loading file \"{}\"...".format(sample_row['File Path'])))
 
             # Attempt to open file
             filename = os.path.join(base_dir, sample_row['File Path'])
@@ -841,7 +841,7 @@ def process_samples_table(samples_table,
         except ExcelUIException as e:
             # Print Exception message
             if verbose:
-                print("ERROR: {}".format(str(e)))
+                print(("ERROR: {}".format(str(e))))
             # Append exception to samples array
             samples.append(e)
 
@@ -1270,7 +1270,7 @@ def generate_about_table(extra_info={}):
     keywords.append('Time of analysis')
     values.append(time.strftime("%I:%M:%S%p"))
     # Add additional keyword:value pairs
-    for k, v in extra_info.items():
+    for k, v in list(extra_info.items()):
         keywords.append(k)
         values.append(v)
 
@@ -1375,7 +1375,7 @@ def run(input_path=None,
 
     # Read relevant tables from workbook
     if verbose:
-        print("Reading {}...".format(input_filename))
+        print(("Reading {}...".format(input_filename)))
     instruments_table = read_table(input_path,
                                    sheetname='Instruments',
                                    index_col='ID')

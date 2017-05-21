@@ -222,7 +222,7 @@ def read_fcs_text_segment(buf, begin, end, delim=None):
     if len(pairs_list) % 2 != 0:
         raise ValueError("odd # of (keys + values); unpaired key or value")
 
-    text = dict(zip(pairs_list[0::2], pairs_list[1::2]))
+    text = dict(list(zip(pairs_list[0::2], pairs_list[1::2])))
 
     return text, delim
 
@@ -414,9 +414,9 @@ def read_fcs_data_segment(buf,
 
             # Reconstitute columns of data by bit shifting appropriate columns
             # in byte_data and accumulating them
-            for col in xrange(data.shape[1]):
+            for col in range(data.shape[1]):
                 num_bytes = param_bit_widths[col]/8
-                for b in xrange(num_bytes):
+                for b in range(num_bytes):
                     byte_data_col = byte_boundaries[col] + b
                     byteshift = (num_bytes-b-1) if big_endian else b
 
@@ -431,7 +431,7 @@ def read_fcs_data_segment(buf,
         if param_ranges is not None:
             # To strictly follow the FCS standards, mask off the unused high bits
             # as specified by param_ranges.
-            for col in xrange(data.shape[1]):
+            for col in range(data.shape[1]):
                 # bits_used should be related to resolution of cytometer ADC
                 bits_used = int(np.ceil(np.log2(param_ranges[col])))
 
@@ -608,7 +608,7 @@ class FCSFile(object):
         
         self._infile = infile
 
-        if isinstance(infile, basestring):
+        if isinstance(infile, str):
             f = open(infile, 'rb')
         else:
             f = infile
@@ -649,7 +649,7 @@ class FCSFile(object):
 
         D = int(self._text['$PAR']) # total number of parameters (aka channels)
         param_bit_widths = [int(self._text['$P{0}B'.format(p)])
-                            for p in xrange(1,D+1)]
+                            for p in range(1,D+1)]
         if self._text['$DATATYPE'] == 'I':
             if not all(bw % 8 == 0 for bw in param_bit_widths):
                 raise NotImplementedError("if $DATATYPE = \'I\', only byte"
@@ -657,7 +657,7 @@ class FCSFile(object):
                     + " supported (detected {0})".format(
                         ", ".join('$P{0}B={1}'.format(
                             p,self._text['$P{0}B'.format(p)])
-                        for p in xrange(1,D+1)
+                        for p in range(1,D+1)
                         if param_bit_widths[p-1] % 8 != 0)))
 
         if self._text['$BYTEORD'] not in ('4,3,2,1', '2,1', '1,2,3,4', '1,2'):
@@ -706,7 +706,7 @@ class FCSFile(object):
         
         # Import DATA segment
         param_ranges = [float(self._text['$P{0}R'.format(p)])
-                        for p in xrange(1,D+1)]
+                        for p in range(1,D+1)]
         if self._header.data_begin and self._header.data_end:
             # Prioritize DATA segment offsets specified in HEADER over
             # offsets specified in TEXT segment.
@@ -738,7 +738,7 @@ class FCSFile(object):
             raise ValueError("DATA segment incorrectly specified")
         self._data.flags.writeable = False
 
-        if isinstance(infile, basestring):
+        if isinstance(infile, str):
             f.close()
 
     # Expose attributes as read-only properties
@@ -811,9 +811,9 @@ class FCSFile(object):
     def __hash__(self):
         return hash((self.infile,
                      self.header,
-                     frozenset(self.text.items()),
+                     frozenset(list(self.text.items())),
                      self.data.tobytes(),
-                     frozenset(self.analysis.items())))
+                     frozenset(list(self.analysis.items()))))
 
     def __repr__(self):
         return str(self.infile)
@@ -1765,7 +1765,7 @@ class FCSData(np.ndarray):
         if hasattr(channels, '__iter__'):
             return [self._name_to_index(ch) for ch in channels]
 
-        if isinstance(channels, basestring):
+        if isinstance(channels, str):
             # channels is a string containing a channel name
             if channels in self.channels:
                 return self.channels.index(channels)

@@ -54,7 +54,7 @@ def transform(data, channels, transform_fxn, def_channels = None):
     # Default
     if channels is None:
         if def_channels is None:
-            channels = range(data_t.shape[1])
+            channels = list(range(data_t.shape[1]))
         else:
             channels = def_channels
 
@@ -139,7 +139,7 @@ def to_rfi(data,
     """
     # Default: all channels
     if channels is None:
-        channels = range(data.shape[1])
+        channels = list(range(data.shape[1]))
 
     if not hasattr(channels, '__iter__'):
         # If channels is not an iterable, convert it, along with resolution,
@@ -291,9 +291,9 @@ def to_mef(data, channels, sc_list, sc_channels = None):
     # Default sc_channels
     if sc_channels is None:
         if data.ndim == 1:
-            sc_channels = range(data.shape[0])
+            sc_channels = list(range(data.shape[0]))
         else:
-            sc_channels = range(data.shape[1])
+            sc_channels = list(range(data.shape[1]))
     # Check that sc_channels and sc_list have the same length
     if len(sc_channels) != len(sc_list):
         raise ValueError("sc_channels and sc_list should have the same length")
